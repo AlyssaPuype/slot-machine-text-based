@@ -1,7 +1,22 @@
+import random
+
 
 MAX_LINES = 3
 MAX_BET = 100
 MIN_BET = 1
+
+ROWS = 3
+COLS = 3
+
+symbol_count = {
+	'A' : 3,
+	'B' : 5,
+	'C' : 6,
+	'D' : 7,
+}
+
+def get_spin(rows, cols, symbols):
+	pass
 
 def deposit():
 	while True:
@@ -44,23 +59,19 @@ def get_bet():
 
 		return amount
 
-
-def check_if_bet_exceeds_balance(balance: int, num_lines: int, bet: str) -> bool:
-	total_bet = num_lines * bet
-	if total_bet > balance:
-		print(f'Your total bet exceeds your current balance. Deposit more or lower your bet.')
-		
-
 def main():
 	balance = deposit()
 	lines = get_number_of_lines()
-	bet = get_bet()
-	if not check_if_bet_exceeds_balance(balance, lines, bet):
-		print()
-		return
-	total_bet = lines*bet
-	print(f'You are betting {bet} on {lines} lines. \nTotal bet = {total_bet} \nCurrent balance =  {balance}')
-	print(balance, lines, bet)
+	while True:
+		bet = get_bet()
+		total_bet = bet * lines
+
+		if total_bet > balance:
+			print('Your bet is too high')
+			break
+
+		print(f'You are betting {bet} on {lines} lines. \nTotal bet = {total_bet} \nCurrent balance =  {balance}')
+		print(balance, lines, bet)
 
 
 main()
